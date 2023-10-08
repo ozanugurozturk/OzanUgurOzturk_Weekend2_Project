@@ -406,9 +406,8 @@ const recipes = [
 ]
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Define allItems and currentItems at a higher scope
   let allItems = books.concat(recipes);
-  let currentItems = allItems; // Initialize currentItems with allItems
+  let currentItems = allItems;
 
   // Displaying images and names
   function displayItems(items, container, cardClass) {
@@ -477,11 +476,11 @@ document.addEventListener("DOMContentLoaded", function () {
   showBooksButton.addEventListener("click", showBooks);
   showRecipesButton.addEventListener("click", showRecipes);
 
-  // Get the filterGenre and ingredientFilter elements
+  // Get the filterGenre and filterCuisine elements
   const filterGenreSelect = document.getElementById("filterGenre");
-  const ingredientFilterSelect = document.getElementById("ingredientFilter");
+  const filterCuisineSelect = document.getElementById("filterCuisine");
 
-  // Populate the filterGenre and ingredientFilter select options
+  // Populate the filterGenre and filterCuisine select options
   function populateFilters() {
     const allGenres = getAllGenres(); // Get all unique genres from books
     const allCuisineTypes = getAllCuisineTypes(); // Get all unique cuisineTypes from recipes
@@ -495,11 +494,14 @@ document.addEventListener("DOMContentLoaded", function () {
       filterGenreSelect.appendChild(option);
     });
 
-    // Populate the ingredientFilter select with options
-    ingredientFilterSelect.innerHTML =
-      '<option value="all">All</option>' +
-      '<option value="5">Less than 5 Ingredients</option>' +
-      '<option value="10">Less than 10 Ingredients</option>';
+    // Populate the filterCuisine select with unique cuisineTypes from recipes
+    filterCuisineSelect.innerHTML = '<option value="">All</option>';
+    allCuisineTypes.forEach((cuisineType) => {
+      const option = document.createElement("option");
+      option.value = cuisineType;
+      option.textContent = cuisineType;
+      filterCuisineSelect.appendChild(option);
+    });
   }
 
   // Get all unique genres from books
@@ -510,17 +512,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Get all unique cuisineTypes from recipes
-function getAllCuisineTypes() {
-  const cuisineTypes = new Set();
-  recipes.forEach((recipe) => {
-    if (Array.isArray(recipe.cuisineType)) {
-      recipe.cuisineType.forEach((cuisine) => cuisineTypes.add(cuisine));
-    } else if (typeof recipe.cuisineType === "string") {
-      cuisineTypes.add(recipe.cuisineType);
-    }
-  });
-  return Array.from(cuisineTypes);
-}
+  function getAllCuisineTypes() {
+    const cuisineTypes = new Set();
+    recipes.forEach((recipe) => {
+      if (Array.isArray(recipe.cuisineType)) {
+        recipe.cuisineType.forEach((cuisine) => cuisineTypes.add(cuisine));
+      } else if (typeof recipe.cuisineType === "string") {
+        cuisineTypes.add(recipe.cuisineType);
+      }
+    });
+    return Array.from(cuisineTypes);
+  }
 
   // Filter books by genre
   function filterBooksByGenre(genre) {
@@ -539,22 +541,24 @@ function getAllCuisineTypes() {
       showAllItems();
     } else {
       const filteredRecipes = recipes.filter((recipe) =>
-        recipe.cuisineType.includes(cuisineType)
+        Array.isArray(recipe.cuisineType)
+          ? recipe.cuisineType.includes(cuisineType)
+          : recipe.cuisineType === cuisineType
       );
       displayItems(filteredRecipes, recipeListContainer, "recipe-card");
       bookListContainer.innerHTML = ""; // Clear the book container
     }
   }
 
-  // Add event listeners for filterGenre and ingredientFilter select elements
+  // Add event listeners for filterGenre and filterCuisine select elements
   filterGenreSelect.addEventListener("change", function () {
     const selectedGenre = filterGenreSelect.value;
     filterBooksByGenre(selectedGenre);
   });
 
-  ingredientFilterSelect.addEventListener("change", function () {
-    const selectedIngredientFilter = ingredientFilterSelect.value;
-    
+  filterCuisineSelect.addEventListener("change", function () {
+    const selectedCuisineType = filterCuisineSelect.value;
+    filterRecipesByCuisineType(selectedCuisineType);
   });
 
   // Call the function to populate filters initially
