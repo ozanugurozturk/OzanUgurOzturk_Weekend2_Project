@@ -71,7 +71,7 @@ const books = [
     rating: 4.7,
     description:
       'The first book in the beloved Harry Potter series, it introduces readers to the magical world of Hogwarts and the young wizard Harry Potter.',
-    image: "./books-images/harry-potter-and-the-sorcerer'.jpg"
+    image: "./books-images/harry-potter-and-the-sorcerer.jpg"
   },
   {
     title: 'Moby-Dick',
@@ -405,58 +405,72 @@ const recipes = [
   }
 ]
 
-// Displaying images and names
+document.addEventListener("DOMContentLoaded", function () {
+  // Define allItems and currentItems at a higher scope
+  let allItems = books.concat(recipes);
+  let currentItems = allItems; // Initialize currentItems with allItems
 
-function displayItems (items, container) {
-  container.innerHTML = ""; //container cleaner
-  items.forEach((item) => {
-    const listItem = document.createElement("li");
+  // Displaying images and names
+  function displayItems(items, container) {
+    container.innerHTML = ""; // Container cleaner
+    items.forEach((item) => {
+      const listItem = document.createElement("li");
 
-    //creating image element
-    const itemImage = document.createElement("img");
-    itemImage.src = item.image;
-    itemImage.alt = item.name;
+      // Creating image element
+      const itemImage = document.createElement("img");
+      itemImage.src = item.image;
+      itemImage.alt = item.title || item.name;
 
-    //creating headers for the objects
-    const itemName = document.createElement("h2");
-    itemName.textContent = item.name;
+      // Creating headers for the objects
+      const itemName = document.createElement("h2");
+      itemName.textContent = item.title || item.name;
 
-    //appending the image and the name to the list item like an object
-    listItem.appendChild(itemImage);
-    listItem.appendChild(itemName);
+      // Appending the image and the name to the list item like an object
+      listItem.appendChild(itemImage);
+      listItem.appendChild(itemName);
 
-    //putting them in the container object
-    container.appendChild(listItem);
-  });
-}
+      // Putting them in the container object
+      container.appendChild(listItem);
+    });
+  }
 
-// Showing all items
-function showAllItems() {
-  const allItems = books.concat(recipes); //merging them together
-  displayItems(allItems, bookListContainer);
-  displayItems(allItems, recipeListContainer);
-}
+  // Showing all items
+  function showAllItems() {
+    currentItems = allItems;
+    displayItems(currentItems, bookListContainer);
+    displayItems(currentItems, recipeListContainer);
+  }
 
-// Showing only books
-function showBooks() {
-  displayItems(allItems, bookListContainer);
-  recipeListContainer.innerHTML = ""; //clearing the recipe container
-}
+  // Showing only books
+  function showBooks() {
+    currentItems = books;
+    displayItems(currentItems, bookListContainer);
+    recipeListContainer.innerHTML = ""; // Clearing the recipe container
+  }
 
-// Showing only recipes
-function showRecipes() {
-  displayItems(allItems, recipeListContainer);
-  bookListContainer.innerHTML = ""; //clearing the book container
-}
+  // Showing only recipes
+  function showRecipes() {
+    currentItems = recipes;
+    displayItems(currentItems, recipeListContainer);
+    bookListContainer.innerHTML = ""; // Clearing the book container
+  }
 
-// Referencing containers
-const bookListContainer = document.getElementById("book-list-container");
-const recipeListContainer = document.getElementById("recipe-list-container");
+  // Referencing containers
+  const bookListContainer = document.getElementById("book-list-container");
+  const recipeListContainer = document.getElementById("recipe-list-container");
 
-// Referencing buttons
-const showAllButton = document.getElementById("showAll");
-const showBooksButton = document.getElementById("showBooks");
-const showRecipesButton = document.getElementById("showRecipes");
+  // Referencing buttons
+  const showAllButton = document.getElementById("showAll");
+  const showBooksButton = document.getElementById("showBooks");
+  const showRecipesButton = document.getElementById("showRecipes");
 
-// Adding Event Listener
+  // Adding Event Listener
 
+  showAllButton.addEventListener("click", showAllItems);
+  showBooksButton.addEventListener("click", showBooks);
+  showRecipesButton.addEventListener("click", showRecipes);
+
+  // Default display is showing all items
+
+  showAllItems();
+});
