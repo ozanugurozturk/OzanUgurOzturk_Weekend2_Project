@@ -404,3 +404,34 @@ const recipes = [
     image: './recipe-images/grilled.jpg'
   }
 ]
+
+// Displaying images and names
+
+function displayItems (items, container) {
+  container.innerHTML = ""; //container cleaner
+  items.forEach((item) => {
+    const listItem = document.createElement("li");
+
+    //creating image element
+    const itemImage = document.createElement("img");
+    itemImage.src = item.image;
+    itemImage.alt = item.name;
+
+    //creating headers for the objects
+    const itemName = document.createElement("h2");
+    itemName.textContent = item.name;
+
+    //appending the image and the name to the list item like an object
+    listItem.appendChild(itemImage);
+    listItem.appendChild(itemName);
+
+    //putting them in the container object
+    container.appendChild(listItem);
+  });
+}
+
+// Showing all items
+
+// Showing only books
+
+// Showing only recipes
