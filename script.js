@@ -436,9 +436,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Showing all items
   function showAllItems() {
-    currentItems = allItems;
-    displayItems(currentItems, bookListContainer);
-    displayItems(currentItems, recipeListContainer);
+    displayItems(books, bookListContainer);
+    displayItems(recipes, recipeListContainer);
   }
 
   // Showing only books
