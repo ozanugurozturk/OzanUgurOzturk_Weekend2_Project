@@ -14,6 +14,37 @@
     <button id="showBooks">Books</button>
     <button id="showRecipes">Recipes</button>
   </div>
+  <div>
+    <label for="filterGenre">Filter by Genre/Cuisine:</label>
+    <select id="filterGenre">
+      <option value="">All</option>
+    </select>
+  </div>
+  <div>
+    <label for="sortProperty">Sort by:</label>
+    <select id="sortProperty">
+      <option value="title">Title (A-Z)</option>
+      <option value="year">Year (Newest First)</option>
+      <option value="rating">Rating (Highest First)</option>
+    </select>
+    <label for="sortOrder">Order:</label>
+    <select id="sortOrder">
+      <option value="asc">Ascending</option>
+      <option value="desc">Descending</option>
+    </select>
+  </div>
+  <div>
+    <label for="ingredientFilter">Filter by Ingredients:</label>
+    <select id="ingredientFilter">
+      <option value="all">All</option>
+      <option value="5">Less than 5 Ingredients</option>
+      <option value="10">Less than 10 Ingredients</option>
+    </select>
+  </div>
+  <div>
+    <label for="searchBar">Search:</label>
+    <input type="text" id="searchBar" placeholder="Search by title or name">
+  </div>
   <main>
     <section id="book-list">
       <h1>Books</h1>

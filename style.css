@@ -44,6 +44,22 @@
     overflow: hidden;
     text-overflow: ellipsis; /* Truncate long names with ellipses */
   }
+
+  div {
+    margin: 10px;
+    display: inline-block;
+  }
+  
+  select, input {
+    margin-left: 5px;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  /* Style for search bar */
+  #searchBar {
+    width: 200px;
+  }
   
   /* Media query for responsiveness */
   @media (max-width: 768px) {
