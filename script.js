@@ -535,7 +535,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Filter recipes by cuisineType
+  // Filtering recipes by cuisineType
   function filterRecipesByCuisineType(cuisineType) {
     if (cuisineType === "") {
       showAllItems();
@@ -550,7 +550,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Add event listeners for filterGenre and filterCuisine select elements
+  // Adding event listeners for filterGenre and filterCuisine select elements
   filterGenreSelect.addEventListener("change", function () {
     const selectedGenre = filterGenreSelect.value;
     filterBooksByGenre(selectedGenre);
@@ -561,7 +561,39 @@ document.addEventListener("DOMContentLoaded", function () {
     filterRecipesByCuisineType(selectedCuisineType);
   });
 
-  // Call the function to populate filters initially
+  // Referencing select elements for sorting
+  const sortPropertySelect = document.getElementById("sortProperty");
+  const sortOrderSelect = document.getElementById("sortOrder");
+
+  // Adding event listeners for sorting
+  sortPropertySelect.addEventListener("change", sortItems);
+  sortOrderSelect.addEventListener("change", sortItems);
+
+  // Function to sort items
+  function sortItems() {
+    const selectedProperty = sortPropertySelect.value;
+    const selectedOrder = sortOrderSelect.value;
+
+    // Sort the currentItems array based on the selected property and order
+    if (selectedProperty && selectedOrder) {
+      currentItems.sort((a, b) => {
+        if (selectedOrder === "asc") {
+          return a[selectedProperty] > b[selectedProperty] ? 1 : -1;
+        } else {
+          return b[selectedProperty] > a[selectedProperty] ? 1 : -1;
+        }
+      });
+    }
+
+    // Redisplaying the sorted items
+    if (currentItems === books) {
+      displayItems(currentItems, bookListContainer, "book-card");
+    } else {
+      displayItems(currentItems, recipeListContainer, "recipe-card");
+    }
+  }
+
+  // Calling the function to populate the filters initially
   populateFilters();
 
   // Default display is showing all items
