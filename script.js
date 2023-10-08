@@ -414,7 +414,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function displayItems(items, container) {
     container.innerHTML = ""; // Container cleaner
     items.forEach((item) => {
-      const listItem = document.createElement("li");
+      const card = document.createElement("div");
+      card.classList.add("card");
 
       // Creating image element
       const itemImage = document.createElement("img");
@@ -425,19 +426,22 @@ document.addEventListener("DOMContentLoaded", function () {
       const itemName = document.createElement("h2");
       itemName.textContent = item.title || item.name;
 
-      // Appending the image and the name to the list item like an object
-      listItem.appendChild(itemImage);
-      listItem.appendChild(itemName);
+      // Appending the image and the name to the card
+      card.appendChild(itemImage);
+      card.appendChild(itemName);
 
-      // Putting them in the container object
-      container.appendChild(listItem);
+      // Putting the card in the container object
+      container.appendChild(card);
     });
   }
 
   // Showing all items
   function showAllItems() {
+    currentItems = allItems;
     displayItems(books, bookListContainer);
     displayItems(recipes, recipeListContainer);
+    document.getElementById("book-list").style.display = "block";
+    document.getElementById("recipe-list").style.display = "block";
   }
 
   // Showing only books
@@ -445,6 +449,8 @@ document.addEventListener("DOMContentLoaded", function () {
     currentItems = books;
     displayItems(currentItems, bookListContainer);
     recipeListContainer.innerHTML = ""; // Clearing the recipe container
+    document.getElementById("book-list").style.display = "block";
+    document.getElementById("recipe-list").style.display = "none";
   }
 
   // Showing only recipes
@@ -452,6 +458,8 @@ document.addEventListener("DOMContentLoaded", function () {
     currentItems = recipes;
     displayItems(currentItems, recipeListContainer);
     bookListContainer.innerHTML = ""; // Clearing the book container
+    document.getElementById("book-list").style.display = "none";
+    document.getElementById("recipe-list").style.display = "block";
   }
 
   // Referencing containers

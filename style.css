@@ -18,7 +18,7 @@ header {
 
 div {
     text-align: center;
-    margin: 20px 0;
+    margin: 5px 0;
 }
 
 button {
@@ -35,14 +35,13 @@ button:hover {
 }
 
 main {
-    display: grid; /* Use grid layout */
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); /* Two rows */
     gap: 20px; /* Gap between grid items */
     padding: 20px;
 }
 
 section {
-    background-color: white;
     padding: 20px;
     border-radius: 5px;
 }
@@ -52,20 +51,58 @@ h1 {
     margin-bottom: 20px;
 }
 
-ul {
-    list-style: none;
+/* Updated container styles */
+#book-list-container {
+    order: 1; /* Move books container to the top */
 }
 
-li {
-    margin-bottom: 20px;
-    display: flex; /* Display items in a row */
-    align-items: center; /* Center vertically */
+#recipe-list-container {
+    order: 2; /* Move recipes container to the bottom */
 }
 
-img {
-    max-width: 50px; /* Smaller image width */
-    height: auto;
+.card-container {
+    display: contents;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: space-between; /* Distribute cards evenly */
+    align-content: flex-start; /* Align cards at the top of the container */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    width: 350px; /* Fixed card width */
+    height: 250px; /* Fixed card height */
+    padding: 5px;
     border-radius: 5px;
-    margin-right: 10px; /* Add some spacing between image and name */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    flex: 0 0 calc(50% - 35px); 
+    margin-bottom: 12px; 
+}
+
+.card img {
+    max-width: 100%; /* 100% of the card width */
+    height: 200px; /* Set a fixed height for all images */
+    object-fit: cover; /* Crop or stretch the image to cover the specified dimensions */
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.card h2 {
+    font-size: 18px;
+    margin-top: auto; /* Align at the bottom */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-height: 40px; /* Set a fixed height for the title element */
+}
+
+#book-list-container .card {
+    background-color: #d0ffd0; /* Light green background for books */
+}
+
+#recipe-list-container .card {
+    background-color: #ffd0d0; /* Light red background for recipes */
 }
