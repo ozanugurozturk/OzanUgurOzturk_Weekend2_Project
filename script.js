@@ -411,11 +411,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentItems = allItems; // Initialize currentItems with allItems
 
   // Displaying images and names
-  function displayItems(items, container) {
+  function displayItems(items, container, cardClass) {
     container.innerHTML = ""; // Container cleaner
     items.forEach((item) => {
       const card = document.createElement("div");
-      card.classList.add("card");
+      card.classList.add("card", cardClass);
 
       // Creating image element
       const itemImage = document.createElement("img");
@@ -438,8 +438,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // Showing all items
   function showAllItems() {
     currentItems = allItems;
-    displayItems(books, bookListContainer);
-    displayItems(recipes, recipeListContainer);
+    displayItems(books, bookListContainer, "book-card");
+    displayItems(recipes, recipeListContainer, "recipe-card");
     document.getElementById("book-list").style.display = "block";
     document.getElementById("recipe-list").style.display = "block";
   }
@@ -447,7 +447,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Showing only books
   function showBooks() {
     currentItems = books;
-    displayItems(currentItems, bookListContainer);
+    displayItems(currentItems, bookListContainer, "book-card");
     recipeListContainer.innerHTML = ""; // Clearing the recipe container
     document.getElementById("book-list").style.display = "block";
     document.getElementById("recipe-list").style.display = "none";
@@ -456,7 +456,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Showing only recipes
   function showRecipes() {
     currentItems = recipes;
-    displayItems(currentItems, recipeListContainer);
+    displayItems(currentItems, recipeListContainer, "recipe-card");
     bookListContainer.innerHTML = ""; // Clearing the book container
     document.getElementById("book-list").style.display = "none";
     document.getElementById("recipe-list").style.display = "block";
