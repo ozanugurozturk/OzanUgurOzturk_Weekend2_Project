@@ -431,7 +431,22 @@ function displayItems (items, container) {
 }
 
 // Showing all items
+function showAllItems() {
+  const allItems = books.concat(recipes); //merging them together
+  displayItems(allItems, bookListContainer);
+  displayItems(allItems, recipeListContainer);
+}
 
 // Showing only books
+function showBooks() {
+  displayItems(allItems, bookListContainer);
+  recipeListContainer.innerHTML = ""; //clearing the recipe container
+}
 
 // Showing only recipes
+function showRecipes() {
+  displayItems(allItems, recipeListContainer);
+  bookListContainer.innerHTML = ""; //clearing the book container
+}
+
+// Referencing containers
