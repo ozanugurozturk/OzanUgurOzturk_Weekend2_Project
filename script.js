@@ -477,7 +477,89 @@ document.addEventListener("DOMContentLoaded", function () {
   showBooksButton.addEventListener("click", showBooks);
   showRecipesButton.addEventListener("click", showRecipes);
 
-  // Default display is showing all items
+  // Get the filterGenre and ingredientFilter elements
+  const filterGenreSelect = document.getElementById("filterGenre");
+  const ingredientFilterSelect = document.getElementById("ingredientFilter");
 
+  // Populate the filterGenre and ingredientFilter select options
+  function populateFilters() {
+    const allGenres = getAllGenres(); // Get all unique genres from books
+    const allCuisineTypes = getAllCuisineTypes(); // Get all unique cuisineTypes from recipes
+
+    // Populate the filterGenre select with unique genres from books
+    filterGenreSelect.innerHTML = '<option value="">All</option>';
+    allGenres.forEach((genre) => {
+      const option = document.createElement("option");
+      option.value = genre;
+      option.textContent = genre;
+      filterGenreSelect.appendChild(option);
+    });
+
+    // Populate the ingredientFilter select with options
+    ingredientFilterSelect.innerHTML =
+      '<option value="all">All</option>' +
+      '<option value="5">Less than 5 Ingredients</option>' +
+      '<option value="10">Less than 10 Ingredients</option>';
+  }
+
+  // Get all unique genres from books
+  function getAllGenres() {
+    const genres = new Set();
+    books.forEach((book) => genres.add(book.genre));
+    return Array.from(genres);
+  }
+
+  // Get all unique cuisineTypes from recipes
+function getAllCuisineTypes() {
+  const cuisineTypes = new Set();
+  recipes.forEach((recipe) => {
+    if (Array.isArray(recipe.cuisineType)) {
+      recipe.cuisineType.forEach((cuisine) => cuisineTypes.add(cuisine));
+    } else if (typeof recipe.cuisineType === "string") {
+      cuisineTypes.add(recipe.cuisineType);
+    }
+  });
+  return Array.from(cuisineTypes);
+}
+
+  // Filter books by genre
+  function filterBooksByGenre(genre) {
+    if (genre === "") {
+      showAllItems();
+    } else {
+      const filteredBooks = books.filter((book) => book.genre === genre);
+      displayItems(filteredBooks, bookListContainer, "book-card");
+      recipeListContainer.innerHTML = ""; // Clear the recipe container
+    }
+  }
+
+  // Filter recipes by cuisineType
+  function filterRecipesByCuisineType(cuisineType) {
+    if (cuisineType === "") {
+      showAllItems();
+    } else {
+      const filteredRecipes = recipes.filter((recipe) =>
+        recipe.cuisineType.includes(cuisineType)
+      );
+      displayItems(filteredRecipes, recipeListContainer, "recipe-card");
+      bookListContainer.innerHTML = ""; // Clear the book container
+    }
+  }
+
+  // Add event listeners for filterGenre and ingredientFilter select elements
+  filterGenreSelect.addEventListener("change", function () {
+    const selectedGenre = filterGenreSelect.value;
+    filterBooksByGenre(selectedGenre);
+  });
+
+  ingredientFilterSelect.addEventListener("change", function () {
+    const selectedIngredientFilter = ingredientFilterSelect.value;
+    
+  });
+
+  // Call the function to populate filters initially
+  populateFilters();
+
+  // Default display is showing all items
   showAllItems();
 });
