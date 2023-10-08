@@ -450,3 +450,13 @@ function showRecipes() {
 }
 
 // Referencing containers
+const bookListContainer = document.getElementById("book-list-container");
+const recipeListContainer = document.getElementById("recipe-list-container");
+
+// Referencing buttons
+const showAllButton = document.getElementById("showAll");
+const showBooksButton = document.getElementById("showBooks");
+const showRecipesButton = document.getElementById("showRecipes");
+
+// Adding Event Listener
+
