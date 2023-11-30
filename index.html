@@ -1,65 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="script.js" charset="UTF-8"></script>
-  <title>Ozan's Books and Recipes</title>
-</head>
-<body>
-  <header>Book And Recipes</header>
-  <div>
-    <button id="showAll">All</button>
-    <button id="showBooks">Books</button>
-    <button id="showRecipes">Recipes</button>
-  </div>
-  <div>
-    <label for="filterGenre">Filter by Genre:</label>
-    <select id="filterGenre">
-      <option value="">All</option>
-    </select>
-  </div>
-  <div>
-    <label for="filterCuisine">Filter by Cuisine:</label>
-    <select id="filterCuisine">
-      <option value="">All</option>
-    </select>
-  </div>
-  <div>
-    <label for="sortProperty">Sort Books By:</label>
-    <select id="sortProperty">
-      <option value="title">Title (A-Z)</option>
-      <option value="year">Year (Newest First)</option>
-      <option value="rating">Rating (Highest First)</option>
-    </select>
-    <label for="sortOrder">Order:</label>
-    <select id="sortOrder">
-      <option value="asc">Ascending</option>
-      <option value="desc">Descending</option>
-    </select>
-  </div>
-  <div>
-    <label for="ingredientFilter">Filter by Ingredients:</label>
-    <select id="ingredientFilter">
-      <option value="all">All</option>
-      <option value="5">Less than 5 Ingredients</option>
-      <option value="10">Less than 10 Ingredients</option>
-    </select>
-  </div>
-  <div>
-    <label for="searchBar">Search:</label>
-    <input type="text" id="searchBar" placeholder="Search by title or name">
-  </div>
-  <main>
-    <section id="book-list">
-      <h1>Books</h1>
-      <div id="book-list-container" class="card-container"></div>
-    </section>
-    <section id="recipe-list">
-      <h1>Recipes</h1>
-      <div id="recipe-list-container" class="card-container"></div>
-    </section>
-  </main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" charset="UTF-8"></script>
+    <title>Ozan's Books and Recipes</title>
+  </head>
+  <body>
+    <header>Book List</header>
+    <div>
+      <button id="showAll">All</button>
+      <button id="showBooks">Books</button>
+    </div>
+    <div>
+      <label for="filterGenre">Filter by Genre:</label>
+      <select id="filterGenre">
+        <option value="">All</option>
+      </select>
+    </div>
+    <div>
+      <label for="sortProperty">Sort Books By:</label>
+      <select id="sortProperty">
+        <option value="title">Title (A-Z)</option>
+        <option value="year">Year (Newest First)</option>
+        <option value="rating">Rating (Highest First)</option>
+      </select>
+      <label for="sortOrder">Order:</label>
+      <select id="sortOrder">
+        <option value="asc">Ascending</option>
+        <option value="desc">Descending</option>
+      </select>
+    </div>
+    <div>
+      <label for="searchBar">Search:</label>
+      <input type="text" id="searchBar" placeholder="Search by title" />
+    </div>
+    <main>
+      <section id="book-list">
+        <h1>Books</h1>
+        <div id="book-list-container" class="card-container"></div>
+      </section>
+    </main>
+  </body>
 </html>
