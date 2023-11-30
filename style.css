@@ -1,46 +1,40 @@
-/* Grid container for book cards */
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 20px;
-  justify-items: center; /* Center-align the cards horizontally */
+  justify-items: center;
 }
 
-/* Common styles for book cards */
 .card {
-  width: 300px; /* Set a fixed width for all cards */
-  padding: 4px;
+  width: 400px;
+  height: 600px;
   border: 1px solid #ccc;
   border-radius: 14px;
   background-color: white;
   text-align: center;
-  overflow: hidden; /* Hide overflowing text */
+  overflow: hidden;
 }
 
-/* Book card style */
 .book-card {
   background-color: lightgreen;
 }
 
-/* Style for card images */
 .card img {
-  max-width: 100%;
-  height: 250px;
-  width: 230px;
-  border-radius: 14px;
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 14px 14px 0 0;
 }
 
-/* Style for card titles */
 .card h2 {
   margin: 3px;
-  font-size: 1rem; /* Adjust font size */
+  font-size: 1.5rem;
   font-weight: bold;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Truncate long names with ellipses */
+  text-overflow: ellipsis;
 }
 
-/* Header style */
 header {
   background-color: #333;
   color: white;
@@ -50,20 +44,13 @@ header {
   font-weight: bold;
 }
 
-/* Main section style */
 main {
   padding: 20px;
 }
 
-/* Button and select style */
-button, select {
-  margin: 5px;
-  padding: 8px;
-  font-size: 1rem;
-}
-
-/* Input style */
-input {
+select, input {
+  width: 100%;
+  margin: 5px 0;
   padding: 8px;
   font-size: 1rem;
 }
