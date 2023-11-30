@@ -207,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const bookListContainer = document.getElementById("book-list-container");
   const filterGenreSelect = document.getElementById("filterGenre");
+  const searchBar = document.getElementById("searchBar");
 
   function populateFilters() {
       const allGenres = getAllGenres();
@@ -227,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function filterBooksByGenre(genre) {
       if (genre === "") {
-          displayItems(allItems, bookListContainer, "book-card");
+          displayItems(currentItems, bookListContainer, "book-card");
       } else {
           const filteredBooks = books.filter((book) => book.genre === genre);
           displayItems(filteredBooks, bookListContainer, "book-card");
@@ -241,6 +242,14 @@ document.addEventListener("DOMContentLoaded", function () {
   filterGenreSelect.addEventListener("change", function () {
       const selectedGenre = filterGenreSelect.value;
       filterBooksByGenre(selectedGenre);
+  });
+
+  searchBar.addEventListener("input", function () {
+      const searchTerm = searchBar.value.toLowerCase();
+      const filteredBooks = allItems.filter(
+          (book) => book.title.toLowerCase().includes(searchTerm)
+      );
+      displayItems(filteredBooks, bookListContainer, "book-card");
   });
 
   const sortPropertySelect = document.getElementById("sortProperty");
