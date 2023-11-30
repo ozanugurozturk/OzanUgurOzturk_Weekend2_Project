@@ -186,24 +186,49 @@ document.addEventListener("DOMContentLoaded", function () {
   let currentItems = allItems;
 
   function displayItems(items, container, cardClass) {
-      container.innerHTML = "";
-      items.forEach((item) => {
-          const card = document.createElement("div");
-          card.classList.add("card", cardClass);
+    container.innerHTML = "";
+    items.forEach((item) => {
+        const card = document.createElement("div");
+        card.classList.add("card", cardClass);
 
-          const itemImage = document.createElement("img");
-          itemImage.src = item.image;
-          itemImage.alt = item.title;
+        const itemImage = document.createElement("img");
+        itemImage.src = item.image;
+        itemImage.alt = item.title;
 
-          const itemName = document.createElement("h2");
-          itemName.textContent = item.title;
+        const itemName = document.createElement("h2");
+        itemName.textContent = item.title;
 
-          card.appendChild(itemImage);
-          card.appendChild(itemName);
+        const itemDetails = document.createElement("div");
+        itemDetails.classList.add("item-details");
 
-          container.appendChild(card);
-      });
-  }
+        const author = document.createElement("p");
+        author.textContent = `Author: ${item.author}`;
+
+        const genre = document.createElement("p");
+        genre.textContent = `Genre: ${item.genre}`;
+
+        const year = document.createElement("p");
+        year.textContent = `Year Published: ${item.year}`;
+
+        const rating = document.createElement("p");
+        rating.textContent = `Rating: ${item.rating}`;
+
+        const description = document.createElement("p");
+        description.textContent = item.description;
+
+        itemDetails.appendChild(author);
+        itemDetails.appendChild(genre);
+        itemDetails.appendChild(year);
+        itemDetails.appendChild(rating);
+
+        card.appendChild(itemImage);
+        card.appendChild(itemName);
+        card.appendChild(itemDetails);
+        card.appendChild(description);
+
+        container.appendChild(card);
+    });
+}
 
   const bookListContainer = document.getElementById("book-list-container");
   const filterGenreSelect = document.getElementById("filterGenre");
@@ -276,5 +301,5 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   populateFilters();
-  showAllItems(); // Display all items by default
+  showAllItems();
 });
