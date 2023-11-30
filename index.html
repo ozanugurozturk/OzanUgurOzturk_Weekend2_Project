@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" charset="UTF-8" defer></script>
-    <title>Ozan's Books and Recipes</title>
-</head>
-<body>
-    <header>Book List</header>
-    <div>
+    <title>Ozan's Books</title>
+  </head>
+  <body>
+    <header class="site-header">Book List</header>
+    <div class="filter-container">
+      <div>
         <label for="filterGenre">Filter by Genre:</label>
         <select id="filterGenre">
-            <option value="">All</option>
+          <option value="">All</option>
         </select>
-    </div>
-    <div>
+      </div>
+      <div>
         <label for="sortProperty">Sort Books By:</label>
         <select id="sortProperty">
-            <option value="title">Title (A-Z)</option>
-            <option value="year">Year (Newest First)</option>
-            <option value="rating">Rating (Highest First)</option>
+          <option value="title">Title (A-Z)</option>
+          <option value="year">Year (Newest First)</option>
+          <option value="rating">Rating (Highest First)</option>
         </select>
         <label for="sortOrder">Order:</label>
         <select id="sortOrder">
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
         </select>
-    </div>
-    <div>
+      </div>
+      <div>
         <label for="searchBar">Search:</label>
         <input type="text" id="searchBar" placeholder="Search by title" />
+      </div>
     </div>
     <main>
-        <section id="book-list">
-            <div id="book-list-container" class="card-container"></div>
-        </section>
+      <section id="book-list">
+        <div id="book-list-container" class="card-container"></div>
+      </section>
     </main>
-</body>
+  </body>
 </html>
